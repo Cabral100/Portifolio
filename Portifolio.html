@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Cabral - Desenvolvedor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-primary: #e6f1ff;
+            --text-secondary: #8892b0;
+            --highlight-color: #1e90ff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--highlight-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--secondary-color);
+            color: var(--text-primary);
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(45deg, var(--highlight-color), var(--accent-color));
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid var(--highlight-color);
+            margin-bottom: 1rem;
+            object-fit: cover;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-color);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(17, 34, 64, 0.95);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-links li a:hover::after {
+            width: 80%;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--highlight-color), var(--accent-color));
+        }
+
+        /* About */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Education */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background-color: var(--highlight-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: calc(50% - 30px);
+            padding: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            left: calc(50% + 30px);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            transform: rotate(45deg);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -10px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            z-index: 1;
+        }
+
+        .timeline-year {
+            color: var(--highlight-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Experience */
+        .experience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--accent-color);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        .experience-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .experience-company {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .experience-position {
+            color: var(--highlight-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-date {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .experience-card ul {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+        }
+
+        /* Skills */
+        .skills-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .skills-category {
+            margin-bottom: 2rem;
+        }
+
+        .skills-category-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .skills-category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--highlight-color);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background-color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            background-color: var(--highlight-color);
+            color: var(--text-primary);
+        }
+
+        /* Languages */
+        .languages-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .language-item {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .language-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--highlight-color);
+            color: var(--text-primary);
+        }
+
+        .language-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .language-level {
+            font-style: italic;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.2), rgba(100, 255, 218, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-img::before {
+            opacity: 1;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            background-color: rgba(30, 144, 255, 0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--highlight-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Contact */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: var(--highlight-color);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-primary);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--text-primary);
+        }
+
+        .social-link:hover {
+            background-color: var(--highlight-color);
+            transform: translateY(-3px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--highlight-color);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 99;
+            transform: translateY(20px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Glow effect */
+        .glow {
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+
+            .title {
+                font-size: 1.2rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                left: 60px !important;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -10px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="header-content" data-aos="fade-down">
+            <img src="146139708.png.png" alt="Lucas Cabral" class="profile-img">            <h1 class="name">Lucas Cabral</h1>
+            <p class="title typewriter">Desenvolvedor Web & Programador</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:lucastcabrald10@gmail.com">lucastcabrald10@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+5511960573657">+55 (11) 96057-3657</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bairro Assunção - São Bernardo do Campo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="container">
+        <ul class="nav-links">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#formacao">Formação</a></li>
+            <li><a href="#experiencia">Experiência</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- About Section -->
+<section id="sobre">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Sobre Mim</h2>
+        <div class="about-content">
+            <p class="about-text" data-aos="fade-up" data-aos-delay="100">
+                Sou estudante de Ciência da Computação na FEI São Bernardo do Campo, com experiência em programação de sistemas, automações, robôs e desenvolvimento web. Meu objetivo profissional é estagiar na área de ciências da computação e aplicar meus conhecimentos em programação para desenvolver soluções inovadoras. Sou apaixonado por tecnologia e busco constantemente aprimorar minhas habilidades técnicas.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="formacao" style="background-color: #0d1b2a;">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Formação Acadêmica</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2023 - 2026</div>
+                    <h3 class="timeline-title">Graduação em Ciência da Computação</h3>
+                    <p>Centro Universitário FEI - São Bernardo do Campo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experiencia">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Experiência Profissional</h2>
+        <div class="experience-cards">
+            <div class="experience-card" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="experience-company">Robô FEI</h3>
+                <p class="experience-position">Programador de Robôs</p>
+                <p class="experience-date">2024 - 2025</p>
+                <ul>
+                    <li>Desenvolvimento e implementação de algoritmos para automação de tarefas domésticas</li>
+                    <li>Utilização de ROS e ROS2 para controle de robôs</li>
+                    <li>Realização de testes para garantir desempenho e precisão</li>
+                    <li>Programação em Python para controle e processamento de dados</li>
+                </ul>
+            </div>
+
+            <div class="experience-card" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="experience-company">Espaço Revestir</h3>
+                <p class="experience-position">Assistente de Loja</p>
+                <p class="experience-date">2024 - 2025</p>
+                <ul>
+                    <li>Criação de tabelas de produtos</li>
+                    <li>Organização de estoque</li>
+                    <li>Movimentação de peças</li>
+                    <li>Transporte de carga</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="habilidades" style="background-color: #0d1b2a;">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Habilidades Técnicas</h2>
+        <div class="skills-content">
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="skills-category-title">Linguagens de Programação</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill-item"><i class="fab fa-java"></i> Java</div>
+                    <div class="skill-item"><i class="fas fa-code"></i> C</div>
+                </div>
+            </div>
+
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="skills-category-title">Desenvolvimento Front-End</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fab fa-html5"></i> HTML</div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS</div>
+                    <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill-item"><i class="fab fa-react"></i> React Native</div>
+                </div>
+            </div>
+
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="skills-category-title">Banco de Dados</h3>
+                <div class="skills-list">
+                    <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> MongoDB</div>
+                </div>
+            </div>
+
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="skills-category-title">Idiomas</h3>
+                <div class="languages-list">
+                    <div class="language-item">
+                        <h4 class="language-name">Português</h4>
+                        <p class="language-level">Nativo</p>
+                    </div>
+                    <div class="language-item">
+                        <h4 class="language-name">Inglês</h4>
+                        <p class="language-level">Fluente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projetos">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Projetos</h2>
+        <div class="projects-grid">
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-img">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Exchange de Criptomoedas</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">API</span>
+                        <span class="project-tag">Finanças</span>
+                    </div>
+                    <p class="project-description">
+                        Projeto Java FEI. Plataforma para troca de criptomoedas com funcionalidades de gestão de carteira, histórico de transações e integração com APIs de mercado.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/Cabral100/Exchange_Criptomoedas" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-img">
+                    <i class="fab fa-react"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Projeto_Comp_Movel_React</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Mobile</span>
+                    </div>
+                    <p class="project-description">
+                        Aplicativo móvel desenvolvido em React utilizando JavaScript para computação móvel.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/Cabral100/Projeto_Comp_Movel_React" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-img">
+                    <i class="fas fa-hospital-user"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Atendimento Médico</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">C</span>
+                        <span class="project-tag">Estrutura de Dados</span>
+                        <span class="project-tag">Gerenciador</span>
+                    </div>
+                    <p class="project-description">
+                        Projeto de Estrutura de Dados - Gerenciador de atendimento médico desenvolvido em C.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/GMEscudeiro/atendimento-medico" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="project-img">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Administrador</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">Gestão</span>
+                    </div>
+                    <p class="project-description">
+                        Repositório do Administrador - Sistema para gerenciamento de recursos e usuários.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/PedroHValim/Administrador" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="project-img">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Site Arquitetura</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">Web</span>
+                    </div>
+                    <p class="project-description">
+                        Site responsivo para um escritório de arquitetura com galeria de projetos e formulário de contato.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/Cabral100/Site_Arquitetura" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="project-img">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Projeto2</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">C</span>
+                        <span class="project-tag">Desenvolvimento</span>
+                    </div>
+                    <p class="project-description">
+                        Projeto de desenvolvimento em linguagem C com aplicações diversas.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/Cabral100/Projeto2" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i> Ver no GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contato" style="background-color: #0d1b2a;">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Certificações e Contato</h2>
+
+        <!-- Certificação CAE -->
+        <div class="certification-card" data-aos="fade-up" data-aos-delay="100" style="background-color: var(--secondary-color); padding: 2rem; border-radius: 5px; box-shadow: var(--shadow); margin-bottom: 2rem; border-left: 4px solid var(--accent-color);">
+            <h3 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 1.3rem;">Certificação Cambridge English (CAE)</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                <strong>Nível:</strong> B2 (Upper Intermediate)
+            </p>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                O Certificate in Advanced English (CAE) é uma qualificação de inglês reconhecida internacionalmente,
+                que comprova habilidades avançadas de comunicação em inglês para trabalho e estudo.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <span style="background-color: rgba(30, 144, 255, 0.15); padding: 0.5rem 1rem; border-radius: 3px; color: var(--accent-color);">Compreensão Auditiva</span>
+                <span style="background-color: rgba(30, 144, 255, 0.15); padding: 0.5rem 1rem; border-radius: 3px; color: var(--accent-color);">Leitura</span>
+                <span style="background-color: rgba(30, 144, 255, 0.15); padding: 0.5rem 1rem; border-radius: 3px; color: var(--accent-color);">Escrita</span>
+                <span style="background-color: rgba(30, 144, 255, 0.15); padding: 0.5rem 1rem; border-radius: 3px; color: var(--accent-color);">Conversação</span>
+            </div>
+        </div>
+
+       
+
+        <!-- Informações de Contato -->
+        <div class="contact-info-card" data-aos="fade-up" data-aos-delay="300" style="background-color: var(--secondary-color); padding: 1.5rem; border-radius: 5px; box-shadow: var(--shadow); margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+            <div class="contact-item">
+                <i class="fas fa-envelope" style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                <p style="color: var(--text-secondary);">lucastcabrald10@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone-alt" style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                <p style="color: var(--text-secondary);">+55 (11) 96057-3657</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt" style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                <p style="color: var(--text-secondary);">Bairro Assunção - São Bernardo do Campo</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="https://github.com/Cabral100" class="social-link" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/lucas-cabral-003641287/" class="social-link" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+
+    // Back to top button
+    const backToTopButton = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Navbar stick on scroll
+    const navbar = document.getElementById('navbar');
+    const sticky = navbar.offsetTop;
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add('sticky');
+        } else {
+            navbar.classList.remove('sticky');
+        }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            window.scrollTo({
+                top: targetElement.offsetTop - navbar.offsetHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Typewriter effect
+    const typewriterElement = document.querySelector('.typewriter');
+    const text = typewriterElement.textContent;
+    typewriterElement.textContent = '';
+
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            typewriterElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+
+    setTimeout(typeWriter, 1000);
+
+    // Form submission handling
+    const contactForm = document.querySelector('.contact-form');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        // Simulate form submission
+        alert('Sua mensagem foi enviada com sucesso!');
+        contactForm.reset();
+
+
+    });
+</script>
+</body>
+</html>
