@@ -29,6 +29,7 @@
             background-color: var(--primary-color);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -42,6 +43,7 @@
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -75,8 +77,8 @@
         }
 
         .profile-img {
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             border: 5px solid var(--highlight-color);
             margin-bottom: 1rem;
@@ -134,6 +136,7 @@
         .nav-links {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             list-style: none;
         }
 
@@ -159,6 +162,22 @@
 
         .nav-links li a:hover::after {
             width: 80%;
+        }
+
+        /* Mobile Navigation */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--text-primary);
+            transition: var(--transition);
         }
 
         /* Sections */
@@ -690,6 +709,41 @@
             color: var(--text-secondary);
         }
 
+        /* Certifications */
+        .certification-card {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .certification-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .certification-card p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .certification-skills {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .certification-skill {
+            background-color: rgba(30, 144, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            color: var(--accent-color);
+        }
+
         /* Animation keyframes */
         @keyframes fadeInUp {
             from {
@@ -719,8 +773,24 @@
             text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
         }
 
-        /* Responsive */
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .project-img {
+                height: 180px;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .name {
+                font-size: 2.2rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            /* Header */
             .name {
                 font-size: 2rem;
             }
@@ -728,8 +798,67 @@
             .title {
                 font-size: 1.2rem;
             }
-
+            
+            .profile-img {
+                width: 160px;
+                height: 160px;
+            }
+            
+            /* Navigation */
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                z-index: 101;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links li a::after {
+                display: none;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -8px);
+            }
+            
+            /* Timeline */
             .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-dot {
                 left: 30px;
             }
 
@@ -737,19 +866,92 @@
                 width: calc(100% - 60px);
                 left: 60px !important;
             }
-
+            
             .timeline-item:nth-child(odd) .timeline-content::before,
             .timeline-item:nth-child(even) .timeline-content::before {
                 left: -10px;
             }
-
-            .timeline-dot {
-                left: 30px;
-            }
-
+            
+            /* Contact */
             .contact-info {
                 flex-direction: column;
-                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            /* Projects */
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Skills */
+            .skills-list, .languages-list {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .profile-img {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .name {
+                font-size: 1.8rem;
+            }
+            
+            .title {
+                font-size: 1.1rem;
+            }
+            
+            .experience-card, .project-card, .language-item {
+                padding: 1.5rem;
+            }
+            
+            .project-img {
+                height: 160px;
+            }
+            
+            .nav-links {
+                width: 85%;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .certification-skill {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .contact-item {
+                font-size: 0.9rem;
+            }
+            
+            .project-tag {
+                font-size: 0.7rem;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .name {
+                font-size: 1.6rem;
+            }
+            
+            .title {
+                font-size: 1rem;
             }
         }
     </style>
@@ -841,15 +1043,16 @@
 
             <div class="experience-card" data-aos="fade-up" data-aos-delay="200">
                 <h3 class="experience-company">Espaço Revestir</h3>
-                <p class="experience-position">Assistente de Loja</p>
-                <p class="experience-date">2024 - 2025</p>
+                <p class="experience-position">Desenvolvimento de Automação com Python</p>
+                <p class="experience-date">2025</p>
                 <ul>
-                    <li>Criação de tabelas de produtos</li>
-                    <li>Organização de estoque</li>
-                    <li>Movimentação de peças</li>
-                    <li>Transporte de carga</li>
+                    <li>Automação de preenchimento de dados do Excel para o sistema interno</li>
+                    <li>Preenchimento automático de produtos no sistema</li>
+                    <li>Organização e atualização de estoque digital</li>
+                    <li>Otimização do controle de movimentação de peças</li>
                 </ul>
             </div>
+            
         </div>
     </div>
 </section>
