@@ -10,8 +10,8 @@
       --bg-primary: #1a1a2e;
       --bg-secondary: #16213e;
       --bg-card: #0f3460;
-      --accent-blue: #0077ff; /* Azul vibrante */
-      --accent-cyan: #00d4ff;
+      --accent-blue: #0077ff;
+      --accent-cyan: #5f00ba;       /* Substituto escuro e harmônico */
       --text-primary: #ffffff;
       --text-secondary: #a8a8a8;
       --text-muted: #6c6c6c;
@@ -36,6 +36,43 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+    }
+
+    /* Language Selector */
+    .language-selector {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      background: var(--bg-card);
+      border-radius: 25px;
+      padding: 8px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .language-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 2px;
+    }
+
+    .language-btn:hover {
+      color: var(--accent-cyan);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .language-btn.active {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: white;
     }
 
     /* Navigation */
@@ -100,7 +137,7 @@
       position: absolute;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at 50% 50%, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
+      background: radial-gradient(circle at 50% 50%, rgba(0, 119, 255, 0.1) 0%, transparent 50%);
       animation: rotate 20s linear infinite;
     }
 
@@ -123,6 +160,7 @@
       font-weight: 300;
       line-height: 1.2;
       margin-bottom: 30px;
+      color: var(--text-primary);
     }
 
     .hero-text .highlight {
@@ -285,7 +323,7 @@
     }
 
     .project-tag {
-      background: rgba(233, 69, 96, 0.2);
+      background: rgba(0, 119, 255, 0.2);
       color: var(--accent-blue);
       padding: 4px 12px;
       border-radius: 20px;
@@ -398,7 +436,7 @@
     }
 
     .contact-link {
-      color: var(--accent-cyan);
+      color: var(--text-secondary);
       text-decoration: none;
     }
 
@@ -445,56 +483,6 @@
       color: var(--text-primary);
       font-size: 24px;
       cursor: pointer;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .mobile-menu {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg-secondary);
-        flex-direction: column;
-        padding: 20px;
-        gap: 20px;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .hero-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-      }
-
-      .hero-visual {
-        order: -1;
-      }
-
-      .code-window {
-        transform: none;
-        max-width: 100%;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 60px 0;
-      }
     }
 
     /* Experience Timeline */
@@ -563,14 +551,13 @@
       line-height: 1.6;
     }
 
-
     .whatsapp-btn {
       position: fixed;
       bottom: 75px;
       right: 20px;
       width: 50px;
       height: 50px;
-      background: forestgreen;
+      background: #25d366;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -586,7 +573,60 @@
       transform: scale(1.1);
     }
 
+    /* Responsive Design */
     @media (max-width: 768px) {
+      .language-selector {
+        top: 10px;
+        right: 10px;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .code-window {
+        transform: none;
+        max-width: 100%;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
       .experience-timeline::before {
         left: 15px;
       }
@@ -594,42 +634,152 @@
       .experience-item {
         padding-left: 50px;
       }
+
       .whatsapp-btn {
         bottom: 20px;
         right: 15px;
       }
+
       .experience-dot {
         left: 6px;
+      }
+    }
+
+    /* Active link style */
+    .nav-links a.active {
+      color: var(--accent-cyan) !important;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-cyan);
+    }
+
+    /* Additional animations */
+    .hero-text {
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-visual {
+      animation: fadeInRight 1s ease-out 0.3s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .project-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .code-window {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .code-window::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+      opacity: 0;
+    }
+
+    .code-window:hover::after {
+      opacity: 1;
+      animation: shine 0.5s ease-in-out;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 36px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .project-card {
+        margin-bottom: 20px;
+      }
+
+      .contact-info {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
     }
   </style>
 </head>
 <body>
+
+<!-- Language Selector -->
+<div class="language-selector">
+  <button class="language-btn active" onclick="changeLanguage('pt')" data-lang="pt">PT</button>
+  <button class="language-btn" onclick="changeLanguage('en')" data-lang="en">EN</button>
+  <button class="language-btn" onclick="changeLanguage('es')" data-lang="es">ES</button>
+</div>
+
 <!-- Navigation -->
 <nav>
   <div class="nav-container">
     <a href="#" class="logo">LUCAS CABRAL</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Sobre</a></li>
-      <li><a href="#experiencia">Experiência</a></li>
-      <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#habilidades">Habilidades</a></li>
-      <li><a href="#contato">Contato</a></li>
+      <li><a href="#hero" data-i18n="nav.about">Sobre</a></li>
+      <li><a href="#experiencia" data-i18n="nav.experience">Experiência</a></li>
+      <li><a href="#projetos" data-i18n="nav.projects">Projetos</a></li>
+      <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+      <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
     </ul>
     <button class="mobile-menu" id="mobileMenu">
       <i class="fas fa-bars"></i>
     </button>
   </div>
 </nav>
-<br>
-<br><br><br>
+
 <!-- Hero Section -->
-<section class="hero">
+<section id="hero" class="hero">
   <div class="container">
     <div class="hero-content">
       <div class="hero-text">
-        <h1>Bem-vindo.</h1>
-        <p class="hero-description">
+        <h1 data-i18n="hero.title">Welcome.</h1>
+        <p class="hero-description" data-i18n="hero.description">
           Meu nome é Lucas Cabral, estudante de Ciência da Computação na FEI – São Bernardo do Campo.
           Trabalho em Freelancer com desenvolvimento web e automação de dados, focando em criar soluções inovadoras e interfaces bem elaboradas que proporcionam experiências excepcionais.
           Atualmente, busco oportunidades na área de TI como estágio, trainee, onde possa aplicar meus conhecimentos e continuar aprendendo.
@@ -665,7 +815,7 @@
               &nbsp;&nbsp;&nbsp;&nbsp;]
             </div>
             <div class="code-line">
-              <span class="comment"># Sempre aprendendo...</span>
+              <span class="comment" data-i18n="code.comment"># Sempre aprendendo...</span>
             </div>
           </div>
         </div>
@@ -678,19 +828,22 @@
 <section id="experiencia" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Minha <span class="highlight">Experiência</span></h2>
-      <p class="section-subtitle">Uma coleção de experiências profissionais e projetos acadêmicos.</p>
+      <h2 class="section-title">
+        <span data-i18n="experience.title.part1">Minha</span>
+        <span class="highlight" data-i18n="experience.title.part2">Experiência</span>
+      </h2>
+      <p class="section-subtitle" data-i18n="experience.subtitle">Uma coleção de experiências profissionais e projetos acadêmicos.</p>
     </div>
     <div class="experience-timeline">
       <div class="experience-item">
         <div class="experience-dot"></div>
         <div class="experience-content">
           <div class="experience-header">
-            <h3 class="experience-company">Robô FEI</h3>
-            <p class="experience-position">Programador de Robôs</p>
+            <h3 class="experience-company" data-i18n="experience.robot.company">Robô FEI</h3>
+            <p class="experience-position" data-i18n="experience.robot.position">Programador de Robôs</p>
             <p class="experience-date">2024 - 2025</p>
           </div>
-          <p class="experience-description">
+          <p class="experience-description" data-i18n="experience.robot.description">
             Desenvolvimento e implementação de algoritmos para automação de tarefas domésticas utilizando ROS e ROS2.
             Responsável pela programação em Python para controle e processamento de dados, além de realização de testes
             para garantir desempenho e precisão.
@@ -701,27 +854,26 @@
         <div class="experience-dot"></div>
         <div class="experience-content">
           <div class="experience-header">
-            <h3 class="experience-company">Espaço Revestir</h3>
-            <p class="experience-position">Desenvolvedor Web & Automação Python</p>
+            <h3 class="experience-company" data-i18n="experience.revestir.company">Espaço Revestir</h3>
+            <p class="experience-position" data-i18n="experience.revestir.position">Desenvolvedor Web & Automação Python</p>
             <p class="experience-date">2024 - 2025</p>
           </div>
-          <p class="experience-description">
+          <p class="experience-description" data-i18n="experience.revestir.description">
             Desenvolvimento de sistemas web personalizados e automação de processos com Python.
             Responsável por automação de preenchimento de dados do Excel para sistema interno,
             desenvolvimento de interfaces web, organização de estoque digital e otimização do controle de movimentação de peças.
           </p>
         </div>
       </div>
-
       <div class="experience-item">
         <div class="experience-dot"></div>
         <div class="experience-content">
           <div class="experience-header">
-            <h3 class="experience-company">Freelancer</h3>
-            <p class="experience-position">Desenvolvedor Web Full-Stack</p>
-            <p class="experience-date">2023 - Presente</p>
+            <h3 class="experience-company" data-i18n="experience.freelancer.company">Freelancer</h3>
+            <p class="experience-position" data-i18n="experience.freelancer.position">Desenvolvedor Web Full-Stack</p>
+            <p class="experience-date" data-i18n="experience.freelancer.date">2023 - Presente</p>
           </div>
-          <p class="experience-description">
+          <p class="experience-description" data-i18n="experience.freelancer.description">
             Desenvolvimento de projetos web personalizados para médias e grandes empresas, bem como projetos pessoais.
             Criação de sites responsivos, aplicações web, sistemas de gestão e soluções digitais sob medida utilizando
             tecnologias modernas como React, JavaScript, HTML, CSS e bancos de dados.
@@ -736,8 +888,11 @@
 <section id="projetos" class="section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Meu <span class="highlight">Trabalho</span></h2>
-      <p class="section-subtitle">Uma coleção de projetos que desenvolvi.</p>
+      <h2 class="section-title">
+        <span data-i18n="projects.title.part1">Meu</span>
+        <span class="highlight" data-i18n="projects.title.part2">Trabalho</span>
+      </h2>
+      <p class="section-subtitle" data-i18n="projects.subtitle">Uma coleção de projetos que desenvolvi.</p>
     </div>
     <div class="projects-grid">
       <div class="project-card">
@@ -745,15 +900,15 @@
           <i class="fas fa-exchange-alt"></i>
         </div>
         <div class="project-content">
-          <h3 class="project-title">Exchange de Criptomoedas</h3>
-          <p class="project-description">
+          <h3 class="project-title" data-i18n="projects.crypto.title">Exchange de Criptomoedas</h3>
+          <p class="project-description" data-i18n="projects.crypto.description">
             Plataforma completa para troca de criptomoedas desenvolvida em Java. Inclui gestão de carteira,
             histórico de transações e integração com APIs de mercado em tempo real.
           </p>
           <div class="project-tags">
             <span class="project-tag">Java</span>
             <span class="project-tag">API</span>
-            <span class="project-tag">Finanças</span>
+            <span class="project-tag" data-i18n="projects.crypto.tag">Finanças</span>
           </div>
           <div class="project-links">
             <a href="https://github.com/Cabral100/Exchange_Criptomoedas" class="project-link" target="_blank">
@@ -768,8 +923,8 @@
           <i class="fab fa-react"></i>
         </div>
         <div class="project-content">
-          <h3 class="project-title">App React Mobile</h3>
-          <p class="project-description">
+          <h3 class="project-title" data-i18n="projects.react.title">App React Mobile</h3>
+          <p class="project-description" data-i18n="projects.react.description">
             Aplicativo móvel desenvolvido em React Native utilizando JavaScript.
             Focado em computação móvel com interface moderna e responsiva.
           </p>
@@ -791,15 +946,15 @@
           <i class="fas fa-hospital-user"></i>
         </div>
         <div class="project-content">
-          <h3 class="project-title">Sistema Médico</h3>
-          <p class="project-description">
+          <h3 class="project-title" data-i18n="projects.medical.title">Sistema Médico</h3>
+          <p class="project-description" data-i18n="projects.medical.description">
             Gerenciador de atendimento médico desenvolvido em C como projeto de Estrutura de Dados.
             Sistema completo para gestão de pacientes e consultas.
           </p>
           <div class="project-tags">
             <span class="project-tag">C</span>
-            <span class="project-tag">Estruturas de Dados</span>
-            <span class="project-tag">Sistema</span>
+            <span class="project-tag" data-i18n="projects.medical.tag1">Estruturas de Dados</span>
+            <span class="project-tag" data-i18n="projects.medical.tag2">Sistema</span>
           </div>
           <div class="project-links">
             <a href="https://github.com/GMEscudeiro/atendimento-medico" class="project-link" target="_blank">
@@ -810,18 +965,17 @@
       </div>
     </div>
 
-    <!-- View More Projects Button -->
     <div style="text-align: center; margin-top: 60px;">
       <a href="https://github.com/Cabral100?tab=repositories" target="_blank"
          style="display: inline-flex; align-items: center; gap: 10px;
                   background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
                   color: white; padding: 15px 30px; border-radius: 50px;
                   text-decoration: none; font-weight: 600; font-size: 16px;
-                  transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);"
-         onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(233, 69, 96, 0.4)'"
-         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(233, 69, 96, 0.3)'">
+                  transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);"
+         onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(0, 119, 255, 0.4)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 119, 255, 0.3)'">
         <i class="fab fa-github"></i>
-        Ver Mais Projetos
+        <span data-i18n="projects.viewMore">Ver Mais Projetos</span>
       </a>
     </div>
   </div>
@@ -831,12 +985,14 @@
 <section class="section" style="background: var(--bg-secondary);">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Idiomas & <span class="highlight">Cidadania</span></h2>
-      <p class="section-subtitle">Capacidade de comunicação global e flexibilidade internacional.</p>
+      <h2 class="section-title">
+        <span data-i18n="languages.title.part1">Idiomas</span> &
+        <span class="highlight" data-i18n="languages.title.part2">Cidadania</span>
+      </h2>
+      <p class="section-subtitle" data-i18n="languages.subtitle">Capacidade de comunicação global e flexibilidade internacional.</p>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 800px; margin: 0 auto;">
-      <!-- Languages Card -->
       <div style="background: var(--bg-card); padding: 40px; border-radius: 16px;
                     border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
                     transition: transform 0.3s ease;"
@@ -847,25 +1003,24 @@
                       margin: 0 auto 20px; font-size: 32px; color: white;">
           <i class="fas fa-language"></i>
         </div>
-        <h3 style="color: var(--text-primary); margin-bottom: 20px; font-size: 20px;">Idiomas</h3>
+        <h3 style="color: var(--text-primary); margin-bottom: 20px; font-size: 20px;" data-i18n="languages.card.title">Idiomas</h3>
         <div style="display: flex; flex-direction: column; gap: 15px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="color: var(--text-secondary);">🇧🇷 Português</span>
+            <span style="color: var(--text-secondary);" data-i18n="languages.portuguese">🇧🇷 Português</span>
             <span style="background: var(--accent-blue); color: white; padding: 4px 12px;
-                           border-radius: 20px; font-size: 12px; font-weight: 600;">NATIVO</span>
+                           border-radius: 20px; font-size: 12px; font-weight: 600;" data-i18n="languages.native">NATIVO</span>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="color: var(--text-secondary);">🇺🇸 Inglês</span>
+            <span style="color: var(--text-secondary);" data-i18n="languages.english">🇺🇸 Inglês</span>
             <span style="background: var(--accent-cyan); color: var(--bg-primary); padding: 4px 12px;
-                           border-radius: 20px; font-size: 12px; font-weight: 600;">FLUENTE</span>
+                           border-radius: 20px; font-size: 12px; font-weight: 600;" data-i18n="languages.fluent">FLUENTE</span>
           </div>
         </div>
-        <p style="color: var(--text-muted); font-size: 14px; margin-top: 15px;">
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 15px;" data-i18n="languages.certification">
           Certificação Cambridge English (CAE) - Nível B2
         </p>
       </div>
 
-      <!-- Citizenship Card -->
       <div style="background: var(--bg-card); padding: 40px; border-radius: 16px;
                     border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
                     transition: transform 0.3s ease;"
@@ -876,20 +1031,20 @@
                       margin: 0 auto 20px; font-size: 32px; color: white;">
           <i class="fas fa-globe"></i>
         </div>
-        <h3 style="color: var(--text-primary); margin-bottom: 20px; font-size: 20px;">Dupla Cidadania</h3>
+        <h3 style="color: var(--text-primary); margin-bottom: 20px; font-size: 20px;" data-i18n="citizenship.title">Dupla Cidadania</h3>
         <div style="display: flex; flex-direction: column; gap: 15px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="color: var(--text-secondary);">🇧🇷 Brasil</span>
+            <span style="color: var(--text-secondary);" data-i18n="citizenship.brazil">🇧🇷 Brasil</span>
             <span style="background: rgba(0, 128, 0, 0.8); color: white; padding: 4px 12px;
-                           border-radius: 20px; font-size: 12px; font-weight: 600;">CIDADÃO</span>
+                           border-radius: 20px; font-size: 12px; font-weight: 600;" data-i18n="citizenship.citizen">CIDADÃO</span>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="color: var(--text-secondary);">🇵🇹 Portugal</span>
+            <span style="color: var(--text-secondary);" data-i18n="citizenship.portugal">🇵🇹 Portugal</span>
             <span style="background: rgba(220, 20, 60, 0.8); color: white; padding: 4px 12px;
-                           border-radius: 20px; font-size: 12px; font-weight: 600;">CIDADÃO</span>
+                           border-radius: 20px; font-size: 12px; font-weight: 600;" data-i18n="citizenship.citizen">CIDADÃO</span>
           </div>
         </div>
-        <p style="color: var(--text-muted); font-size: 14px; margin-top: 15px;">
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 15px;" data-i18n="citizenship.benefit">
           Facilita trabalho e estudos na União Europeia
         </p>
       </div>
@@ -901,12 +1056,15 @@
 <section id="habilidades" class="section skills-section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Minhas <span class="highlight">Habilidades</span></h2>
-      <p class="section-subtitle">Tecnologias e ferramentas que utilizo no desenvolvimento.</p>
+      <h2 class="section-title">
+        <span data-i18n="skills.title.part1">Minhas</span>
+        <span class="highlight" data-i18n="skills.title.part2">Habilidades</span>
+      </h2>
+      <p class="section-subtitle" data-i18n="skills.subtitle">Tecnologias e ferramentas que utilizo no desenvolvimento.</p>
     </div>
     <div class="skills-grid">
       <div class="skill-category">
-        <h3><i class="fas fa-code" style="margin-right: 8px; color: var(--accent-cyan);"></i>Linguagens de Programação</h3>
+        <h3><i class="fas fa-code" style="margin-right: 8px; color: var(--accent-cyan);"></i><span data-i18n="skills.programming">Linguagens de Programação</span></h3>
         <div class="skill-list">
           <div class="skill-item">
             <i class="fab fa-python" style="margin-right: 5px;"></i>Python
@@ -923,7 +1081,7 @@
         </div>
       </div>
       <div class="skill-category">
-        <h3><i class="fas fa-palette" style="margin-right: 8px; color: var(--accent-cyan);"></i>Frontend Development</h3>
+        <h3><i class="fas fa-palette" style="margin-right: 8px; color: var(--accent-cyan);"></i><span data-i18n="skills.frontend">Frontend Development</span></h3>
         <div class="skill-list">
           <div class="skill-item">
             <i class="fab fa-react" style="margin-right: 5px;"></i>React
@@ -940,7 +1098,7 @@
         </div>
       </div>
       <div class="skill-category">
-        <h3><i class="fas fa-database" style="margin-right: 8px; color: var(--accent-cyan);"></i>Banco de Dados</h3>
+        <h3><i class="fas fa-database" style="margin-right: 8px; color: var(--accent-cyan);"></i><span data-i18n="skills.database">Banco de Dados</span></h3>
         <div class="skill-list">
           <div class="skill-item">
             <i class="fas fa-database" style="margin-right: 5px;"></i>SQL
@@ -951,7 +1109,7 @@
         </div>
       </div>
       <div class="skill-category">
-        <h3><i class="fas fa-robot" style="margin-right: 8px; color: var(--accent-cyan);"></i>Robótica & Automação</h3>
+        <h3><i class="fas fa-robot" style="margin-right: 8px; color: var(--accent-cyan);"></i><span data-i18n="skills.robotics">Robótica & Automação</span></h3>
         <div class="skill-list">
           <div class="skill-item">
             <i class="fas fa-cogs" style="margin-right: 5px;"></i>ROS
@@ -960,7 +1118,7 @@
             <i class="fas fa-cogs" style="margin-right: 5px;"></i>ROS2
           </div>
           <div class="skill-item">
-            <i class="fas fa-magic" style="margin-right: 5px;"></i>Automação
+            <i class="fas fa-magic" style="margin-right: 5px;"></i><span data-i18n="skills.automation">Automação</span>
           </div>
           <div class="skill-item">
             <i class="fas fa-microchip" style="margin-right: 5px;"></i>IoT
@@ -968,7 +1126,7 @@
         </div>
       </div>
       <div class="skill-category">
-        <h3><i class="fas fa-tools" style="margin-right: 8px; color: var(--accent-cyan);"></i>Ferramentas & Outros</h3>
+        <h3><i class="fas fa-tools" style="margin-right: 8px; color: var(--accent-cyan);"></i><span data-i18n="skills.tools">Ferramentas & Outros</span></h3>
         <div class="skill-list">
           <div class="skill-item">
             <i class="fab fa-git-alt" style="margin-right: 5px;"></i>Git
@@ -985,19 +1143,19 @@
         </div>
       </div>
       <div class="skill-category">
-        <h3><i class="fas fa-briefcase" style="margin-right: 8px; color: var(--accent-cyan);"></i>Especialidades</h3>
+        <h3><i class="fas fa-briefcase" style="margin-right: 8px; color: var(--accent-cyan);"></i><span data-i18n="skills.specialties">Especialidades</span></h3>
         <div class="skill-list">
           <div class="skill-item">
-            <i class="fas fa-globe-americas" style="margin-right: 5px;"></i>Desenvolvimento Web
+            <i class="fas fa-globe-americas" style="margin-right: 5px;"></i><span data-i18n="skills.webdev">Desenvolvimento Web</span>
           </div>
           <div class="skill-item">
-            <i class="fas fa-mobile-alt" style="margin-right: 5px;"></i>Apps Mobile
+            <i class="fas fa-mobile-alt" style="margin-right: 5px;"></i><span data-i18n="skills.mobile">Apps Mobile</span>
           </div>
           <div class="skill-item">
-            <i class="fas fa-tasks" style="margin-right: 5px;"></i>Automação de Processos
+            <i class="fas fa-tasks" style="margin-right: 5px;"></i><span data-i18n="skills.process">Automação de Processos</span>
           </div>
           <div class="skill-item">
-            <i class="fas fa-handshake" style="margin-right: 5px;"></i>Projetos Freelancer
+            <i class="fas fa-handshake" style="margin-right: 5px;"></i><span data-i18n="skills.freelance">Projetos Freelancer</span>
           </div>
         </div>
       </div>
@@ -1009,8 +1167,11 @@
 <section id="contato" class="section contact-section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Vamos <span class="highlight">Conversar</span></h2>
-      <p class="section-subtitle">Interessado em trabalhar junto ou apenas quer dizer oi? Entre em contato!</p>
+      <h2 class="section-title">
+        <span data-i18n="contact.title.part1">Vamos</span>
+        <span class="highlight" data-i18n="contact.title.part2">Conversar</span>
+      </h2>
+      <p class="section-subtitle" data-i18n="contact.subtitle">Interessado em trabalhar junto ou apenas quer dizer oi? Entre em contato!</p>
     </div>
     <div class="contact-info">
       <div class="contact-item">
@@ -1033,7 +1194,7 @@
         <div class="contact-icon">
           <i class="fas fa-map-marker-alt"></i>
         </div>
-        <p class="contact-text">São Bernardo do Campo, SP</p>
+        <p class="contact-text" data-i18n="contact.location">São Bernardo do Campo, SP</p>
       </div>
     </div>
   </div>
@@ -1050,7 +1211,7 @@
         <i class="fab fa-linkedin-in"></i>
       </a>
     </div>
-    <p style="color: var(--text-muted); font-size: 14px;">
+    <p style="color: var(--text-muted); font-size: 14px;" data-i18n="footer.rights">
       © 2025 Lucas Cabral. Todos os direitos reservados.
     </p>
   </div>
@@ -1062,6 +1223,408 @@
 </a>
 
 <script>
+  // Translations object
+  const translations = {
+    pt: {
+      nav: {
+        about: "Sobre",
+        experience: "Experiência",
+        projects: "Projetos",
+        skills: "Habilidades",
+        contact: "Contato"
+      },
+      hero: {
+        title: "Welcome.",
+        description: "Meu nome é Lucas Cabral, estudante de Ciência da Computação na FEI – São Bernardo do Campo. Trabalho em Freelancer com desenvolvimento web e automação de dados, focando em criar soluções inovadoras e interfaces bem elaboradas que proporcionam experiências excepcionais. Atualmente, busco oportunidades na área de TI como estágio, trainee, onde possa aplicar meus conhecimentos e continuar aprendendo."
+      },
+      code: {
+        comment: "# Sempre aprendendo..."
+      },
+      experience: {
+        title: {
+          part1: "Minha",
+          part2: "Experiência"
+        },
+        subtitle: "Uma coleção de experiências profissionais e projetos acadêmicos.",
+        robot: {
+          company: "Robô FEI",
+          position: "Programador de Robôs",
+          description: "Desenvolvimento e implementação de algoritmos para automação de tarefas domésticas utilizando ROS e ROS2. Responsável pela programação em Python para controle e processamento de dados, além de realização de testes para garantir desempenho e precisão."
+        },
+        revestir: {
+          company: "Espaço Revestir",
+          position: "Desenvolvedor Web & Automação Python",
+          description: "Desenvolvimento de sistemas web personalizados e automação de processos com Python. Responsável por automação de preenchimento de dados do Excel para sistema interno, desenvolvimento de interfaces web, organização de estoque digital e otimização do controle de movimentação de peças."
+        },
+        freelancer: {
+          company: "Freelancer",
+          position: "Desenvolvedor Web Full-Stack",
+          date: "2023 - Presente",
+          description: "Desenvolvimento de projetos web personalizados para médias e grandes empresas, bem como projetos pessoais. Criação de sites responsivos, aplicações web, sistemas de gestão e soluções digitais sob medida utilizando tecnologias modernas como React, JavaScript, HTML, CSS e bancos de dados."
+        }
+      },
+      projects: {
+        title: {
+          part1: "Meu",
+          part2: "Trabalho"
+        },
+        subtitle: "Uma coleção de projetos que desenvolvi.",
+        viewMore: "Ver Mais Projetos",
+        crypto: {
+          title: "Exchange de Criptomoedas",
+          description: "Plataforma completa para troca de criptomoedas desenvolvida em Java. Inclui gestão de carteira, histórico de transações e integração com APIs de mercado em tempo real.",
+          tag: "Finanças"
+        },
+        react: {
+          title: "App React Mobile",
+          description: "Aplicativo móvel desenvolvido em React Native utilizando JavaScript. Focado em computação móvel com interface moderna e responsiva."
+        },
+        medical: {
+          title: "Sistema Médico",
+          description: "Gerenciador de atendimento médico desenvolvido em C como projeto de Estrutura de Dados. Sistema completo para gestão de pacientes e consultas.",
+          tag1: "Estruturas de Dados",
+          tag2: "Sistema"
+        }
+      },
+      languages: {
+        title: {
+          part1: "Idiomas",
+          part2: "Cidadania"
+        },
+        subtitle: "Capacidade de comunicação global e flexibilidade internacional.",
+        card: {
+          title: "Idiomas"
+        },
+        portuguese: "🇧🇷 Português",
+        english: "🇺🇸 Inglês",
+        native: "NATIVO",
+        fluent: "FLUENTE",
+        certification: "Certificação Cambridge English (CAE) - Nível B2"
+      },
+      citizenship: {
+        title: "Dupla Cidadania",
+        brazil: "🇧🇷 Brasil",
+        portugal: "🇵🇹 Portugal",
+        citizen: "CIDADÃO",
+        benefit: "Facilita trabalho e estudos na União Europeia"
+      },
+      skills: {
+        title: {
+          part1: "Minhas",
+          part2: "Habilidades"
+        },
+        subtitle: "Tecnologias e ferramentas que utilizo no desenvolvimento.",
+        programming: "Linguagens de Programação",
+        frontend: "Frontend Development",
+        database: "Banco de Dados",
+        robotics: "Robótica & Automação",
+        automation: "Automação",
+        tools: "Ferramentas & Outros",
+        specialties: "Especialidades",
+        webdev: "Desenvolvimento Web",
+        mobile: "Apps Mobile",
+        process: "Automação de Processos",
+        freelance: "Projetos Freelancer"
+      },
+      contact: {
+        title: {
+          part1: "Vamos",
+          part2: "Conversar"
+        },
+        subtitle: "Interessado em trabalhar junto ou apenas quer dizer oi? Entre em contato!",
+        location: "São Bernardo do Campo, SP"
+      },
+      footer: {
+        rights: "© 2025 Lucas Cabral. Todos os direitos reservados."
+      }
+    },
+    en: {
+      nav: {
+        about: "About",
+        experience: "Experience",
+        projects: "Projects",
+        skills: "Skills",
+        contact: "Contact"
+      },
+      hero: {
+        title: "Welcome.",
+        description: "My name is Lucas Cabral, Computer Science student at FEI – São Bernardo do Campo. I work as a Freelancer with web development and data automation, focusing on creating innovative solutions and well-crafted interfaces that provide exceptional experiences. Currently, I seek opportunities in the IT area such as internship, trainee, where I can apply my knowledge and continue learning."
+      },
+      code: {
+        comment: "# Always learning..."
+      },
+      experience: {
+        title: {
+          part1: "My",
+          part2: "Experience"
+        },
+        subtitle: "A collection of professional experiences and academic projects.",
+        robot: {
+          company: "FEI Robot",
+          position: "Robot Programmer",
+          description: "Development and implementation of algorithms for automation of domestic tasks using ROS and ROS2. Responsible for Python programming for control and data processing, in addition to performing tests to ensure performance and accuracy."
+        },
+        revestir: {
+          company: "Espaço Revestir",
+          position: "Web Developer & Python Automation",
+          description: "Development of custom web systems and process automation with Python. Responsible for automating Excel data filling for internal system, web interface development, digital inventory organization and optimization of parts movement control."
+        },
+        freelancer: {
+          company: "Freelancer",
+          position: "Full-Stack Web Developer",
+          date: "2023 - Present",
+          description: "Development of custom web projects for medium and large companies, as well as personal projects. Creation of responsive websites, web applications, management systems and custom digital solutions using modern technologies such as React, JavaScript, HTML, CSS and databases."
+        }
+      },
+      projects: {
+        title: {
+          part1: "My",
+          part2: "Work"
+        },
+        subtitle: "A collection of projects I've developed.",
+        viewMore: "View More Projects",
+        crypto: {
+          title: "Cryptocurrency Exchange",
+          description: "Complete platform for cryptocurrency trading developed in Java. Includes wallet management, transaction history and real-time market API integration.",
+          tag: "Finance"
+        },
+        react: {
+          title: "React Mobile App",
+          description: "Mobile application developed in React Native using JavaScript. Focused on mobile computing with modern and responsive interface."
+        },
+        medical: {
+          title: "Medical System",
+          description: "Medical care manager developed in C as a Data Structure project. Complete system for patient and appointment management.",
+          tag1: "Data Structures",
+          tag2: "System"
+        }
+      },
+      languages: {
+        title: {
+          part1: "Languages",
+          part2: "Citizenship"
+        },
+        subtitle: "Global communication capability and international flexibility.",
+        card: {
+          title: "Languages"
+        },
+        portuguese: "🇧🇷 Portuguese",
+        english: "🇺🇸 English",
+        native: "NATIVE",
+        fluent: "FLUENT",
+        certification: "Cambridge English Certification (CAE) - B2 Level"
+      },
+      citizenship: {
+        title: "Dual Citizenship",
+        brazil: "🇧🇷 Brazil",
+        portugal: "🇵🇹 Portugal",
+        citizen: "CITIZEN",
+        benefit: "Facilitates work and study in the European Union"
+      },
+      skills: {
+        title: {
+          part1: "My",
+          part2: "Skills"
+        },
+        subtitle: "Technologies and tools I use in development.",
+        programming: "Programming Languages",
+        frontend: "Frontend Development",
+        database: "Database",
+        robotics: "Robotics & Automation",
+        automation: "Automation",
+        tools: "Tools & Others",
+        specialties: "Specialties",
+        webdev: "Web Development",
+        mobile: "Mobile Apps",
+        process: "Process Automation",
+        freelance: "Freelance Projects"
+      },
+      contact: {
+        title: {
+          part1: "Let's",
+          part2: "Talk"
+        },
+        subtitle: "Interested in working together or just want to say hi? Get in touch!",
+        location: "São Bernardo do Campo, SP"
+      },
+      footer: {
+        rights: "© 2025 Lucas Cabral. All rights reserved."
+      }
+    },
+    es: {
+      nav: {
+        about: "Sobre",
+        experience: "Experiencia",
+        projects: "Proyectos",
+        skills: "Habilidades",
+        contact: "Contacto"
+      },
+      hero: {
+        title: "Bienvenido.",
+        description: "Mi nombre es Lucas Cabral, estudiante de Ciencias de la Computación en FEI – São Bernardo do Campo. Trabajo como Freelancer con desarrollo web y automatización de datos, enfocándome en crear soluciones innovadoras e interfaces bien elaboradas que proporcionan experiencias excepcionales. Actualmente, busco oportunidades en el área de TI como prácticas, trainee, donde pueda aplicar mis conocimientos y seguir aprendiendo."
+      },
+      code: {
+        comment: "# Siempre aprendiendo..."
+      },
+      experience: {
+        title: {
+          part1: "Mi",
+          part2: "Experiencia"
+        },
+        subtitle: "Una colección de experiencias profesionales y proyectos académicos.",
+        robot: {
+          company: "Robot FEI",
+          position: "Programador de Robots",
+          description: "Desarrollo e implementación de algoritmos para automatización de tareas domésticas utilizando ROS y ROS2. Responsable de la programación en Python para control y procesamiento de datos, además de realizar pruebas para garantizar rendimiento y precisión."
+        },
+        revestir: {
+          company: "Espaço Revestir",
+          position: "Desarrollador Web y Automatización Python",
+          description: "Desarrollo de sistemas web personalizados y automatización de procesos con Python. Responsable de automatización de llenado de datos de Excel para sistema interno, desarrollo de interfaces web, organización de inventario digital y optimización del control de movimiento de piezas."
+        },
+        freelancer: {
+          company: "Freelancer",
+          position: "Desarrollador Web Full-Stack",
+          date: "2023 - Presente",
+          description: "Desarrollo de proyectos web personalizados para medianas y grandes empresas, así como proyectos personales. Creación de sitios web responsivos, aplicaciones web, sistemas de gestión y soluciones digitales a medida utilizando tecnologías modernas como React, JavaScript, HTML, CSS y bases de datos."
+        }
+      },
+      projects: {
+        title: {
+          part1: "Mi",
+          part2: "Trabajo"
+        },
+        subtitle: "Una colección de proyectos que he desarrollado.",
+        viewMore: "Ver Más Proyectos",
+        crypto: {
+          title: "Exchange de Criptomonedas",
+          description: "Plataforma completa para intercambio de criptomonedas desarrollada en Java. Incluye gestión de cartera, historial de transacciones e integración con APIs de mercado en tiempo real.",
+          tag: "Finanzas"
+        },
+        react: {
+          title: "App React Mobile",
+          description: "Aplicación móvil desarrollada en React Native utilizando JavaScript. Enfocada en computación móvil con interfaz moderna y responsiva."
+        },
+        medical: {
+          title: "Sistema Médico",
+          description: "Gestor de atención médica desarrollado en C como proyecto de Estructuras de Datos. Sistema completo para gestión de pacientes y consultas.",
+          tag1: "Estructuras de Datos",
+          tag2: "Sistema"
+        }
+      },
+      languages: {
+        title: {
+          part1: "Idiomas",
+          part2: "Ciudadanía"
+        },
+        subtitle: "Capacidad de comunicación global y flexibilidad internacional.",
+        card: {
+          title: "Idiomas"
+        },
+        portuguese: "🇧🇷 Portugués",
+        english: "🇺🇸 Inglés",
+        native: "NATIVO",
+        fluent: "FLUENTE",
+        certification: "Certificación Cambridge English (CAE) - Nivel B2"
+      },
+      citizenship: {
+        title: "Doble Ciudadanía",
+        brazil: "🇧🇷 Brasil",
+        portugal: "🇵🇹 Portugal",
+        citizen: "CIUDADANO",
+        benefit: "Facilita trabajo y estudios en la Unión Europea"
+      },
+      skills: {
+        title: {
+          part1: "Mis",
+          part2: "Habilidades"
+        },
+        subtitle: "Tecnologías y herramientas que utilizo en el desarrollo.",
+        programming: "Lenguajes de Programación",
+        frontend: "Desarrollo Frontend",
+        database: "Base de Datos",
+        robotics: "Robótica y Automatización",
+        automation: "Automatización",
+        tools: "Herramientas y Otros",
+        specialties: "Especialidades",
+        webdev: "Desarrollo Web",
+        mobile: "Apps Móviles",
+        process: "Automatización de Procesos",
+        freelance: "Proyectos Freelancer"
+      },
+      contact: {
+        title: {
+          part1: "Vamos a",
+          part2: "Conversar"
+        },
+        subtitle: "¿Interesado en trabajar juntos o simplemente quieres saludar? ¡Ponte en contacto!",
+        location: "São Bernardo do Campo, SP"
+      },
+      footer: {
+        rights: "© 2025 Lucas Cabral. Todos los derechos reservados."
+      }
+    }
+  };
+
+  let currentLang = 'pt';
+
+  // Initialize language from localStorage or default to Portuguese
+  function initLanguage() {
+    const savedLang = localStorage.getItem('preferred-language') || 'pt';
+    changeLanguage(savedLang);
+  }
+
+  // Change language function
+  function changeLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('preferred-language', lang);
+
+    // Update HTML lang attribute
+    document.documentElement.lang = lang === 'pt' ? 'pt-br' : lang === 'en' ? 'en' : 'es';
+
+    // Update active button
+    document.querySelectorAll('.language-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // Update all translatable elements
+    updateTranslations(lang);
+  }
+
+  // Update translations function
+  function updateTranslations(lang) {
+    const elements = document.querySelectorAll('[data-i18n]');
+
+    elements.forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      const keys = key.split('.');
+      let translation = translations[lang];
+
+      // Navigate through nested object
+      keys.forEach(k => {
+        if (translation && translation[k]) {
+          translation = translation[k];
+        }
+      });
+
+      if (translation && typeof translation === 'string') {
+        element.textContent = translation;
+      }
+    });
+
+    // Update WhatsApp link based on language
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    const messages = {
+      pt: "Oi!%20Vim%20pelo%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais%20sobre%20voc%C3%AA.",
+      en: "Hi!%20I%20came%20from%20your%20portfolio%20and%20would%20like%20to%20know%20more%20about%20you.",
+      es: "¡Hola!%20Vine%20desde%20tu%20portafolio%20y%20me%20gustaría%20saber%20más%20sobre%20ti."
+    };
+
+    if (whatsappBtn) {
+      whatsappBtn.href = `https://wa.me/5511960573657?text=${messages[lang]}`;
+    }
+  }
+
   // Mobile Navigation
   const mobileMenu = document.getElementById('mobileMenu');
   const navLinks = document.getElementById('navLinks');
@@ -1092,16 +1655,6 @@
     });
   });
 
-  // Navbar background on scroll
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 100) {
-      nav.style.background = 'rgba(26, 26, 46, 0.95)';
-    } else {
-      nav.style.background = 'rgba(26, 26, 46, 0.95)';
-    }
-  });
-
   // Intersection Observer for animations
   const observerOptions = {
     threshold: 0.1,
@@ -1126,31 +1679,38 @@
   });
 
   // Add typing effect to hero text
-  const heroTitle = document.querySelector('.hero-text h1');
-  const text = heroTitle.textContent;
-  heroTitle.textContent = '';
+  function initTypingEffect() {
+    const heroTitle = document.querySelector('.hero-text h1');
+    const getText = () => {
+      const translations = {
+        pt: "Welcome.",
+        en: "Welcome.",
+        es: "Bienvenido."
+      };
+      return translations[currentLang] || "Welcome.";
+    };
 
-  let i = 0;
-  function typeWriter() {
-    if (i < text.length) {
-      heroTitle.textContent += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, 100);
+    let text = getText();
+    heroTitle.textContent = '';
+
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        heroTitle.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+      }
     }
-  }
 
-  // Start typing effect after page load
-  window.addEventListener('load', () => {
     setTimeout(typeWriter, 500);
-  });
+  }
 
   // Parallax effect for hero section
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
     const codeWindow = document.querySelector('.code-window');
 
-    if (hero && codeWindow) {
+    if (codeWindow) {
       codeWindow.style.transform = `perspective(1000px) rotateY(-15deg) rotateX(5deg) translateY(${scrolled * 0.1}px)`;
     }
   });
@@ -1175,7 +1735,6 @@
 
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
       if (window.pageYOffset >= sectionTop - 200) {
         current = section.getAttribute('id');
       }
@@ -1188,129 +1747,38 @@
       }
     });
   });
+
+  // Initialize everything when page loads
+  window.addEventListener('load', () => {
+    initLanguage();
+    initTypingEffect();
+  });
+
+  // Re-initialize typing effect when language changes
+  window.changeLanguage = function(lang) {
+    const oldLang = currentLang;
+    currentLang = lang;
+    localStorage.setItem('preferred-language', lang);
+
+    // Update HTML lang attribute
+    document.documentElement.lang = lang === 'pt' ? 'pt-br' : lang === 'en' ? 'en' : 'es';
+
+    // Update active button
+    document.querySelectorAll('.language-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // Update all translatable elements
+    updateTranslations(lang);
+
+    // Re-initialize typing effect if language changed
+    if (oldLang !== lang) {
+      setTimeout(() => {
+        initTypingEffect();
+      }, 100);
+    }
+  };
 </script>
 
-<style>
-  /* Add active link style */
-  .nav-links a.active {
-    color: var(--accent-cyan) !important;
-  }
-
-  .nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--accent-cyan);
-  }
-
-  /* Additional animations */
-  .hero-text {
-    animation: fadeInUp 1s ease-out;
-  }
-
-  .hero-visual {
-    animation: fadeInRight 1s ease-out 0.3s both;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Smooth transitions for project cards */
-  .project-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Enhanced code window styling */
-  .code-window {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .code-window::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-            45deg,
-            transparent,
-            rgba(255, 255, 255, 0.05),
-            transparent
-    );
-    transform: rotate(45deg);
-    transition: all 0.5s;
-    opacity: 0;
-  }
-
-  .code-window:hover::after {
-    opacity: 1;
-    animation: shine 0.5s ease-in-out;
-  }
-
-  @keyframes shine {
-    0% {
-      transform: translateX(-100%) translateY(-100%) rotate(45deg);
-    }
-    100% {
-      transform: translateX(100%) translateY(100%) rotate(45deg);
-    }
-  }
-
-  /* Loading animation */
-  .loading {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: loadIn 0.6s ease forwards;
-  }
-
-  @keyframes loadIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Improved mobile experience */
-  @media (max-width: 480px) {
-    .hero-text h1 {
-      font-size: 36px;
-    }
-
-    .section-title {
-      font-size: 28px;
-    }
-
-    .project-card {
-      margin-bottom: 20px;
-    }
-
-    .contact-info {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-  }
-</style>
+</body>
+</html>
